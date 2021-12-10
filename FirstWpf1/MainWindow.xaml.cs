@@ -20,9 +20,67 @@ namespace FirstWpf1
     /// </summary>
     public partial class MainWindow : Window
     {
+        private Grid _grid;
+        private Grid AktifGrid
+        {
+            get { return _grid; }
+            set
+            {
+                if (_grid != null)
+                {
+                    _grid.Visibility = Visibility.Hidden;
+                }
+                _grid = AktifGrid;
+                AktifGrid.Visibility = Visibility.Visible;
+            }
+        }
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        private void PencereKapat(object sender, MouseButtonEventArgs e)
+        {
+            this.Close();
+        }
+        private void PencereKucult(object sender, MouseButtonEventArgs e)
+        {
+            if (this.WindowState == WindowState.Maximized)
+            {
+                WindowState = WindowState.Normal;
+            }
+        }
+        private void PencereIndir(object sender, MouseButtonEventArgs e)
+        {
+            WindowState = WindowState.Minimized;
+        }
+
+        private void PencereyiAl(object sender, MouseButtonEventArgs e)
+        {
+            this.DragMove();
+        }
+
+        private void MenuKullan(object sender, RoutedEventArgs e)
+        {
+            Button b = sender as Button;
+            if (b.Content.ToString() == "Hesap Ekle")
+            {
+                AktifGrid = HesapEkle;
+            }
+            else if (b.Content.ToString() == "Hesap Bul")
+            {
+                AktifGrid = HesapBul;
+            }
+        }
+
+        private void Hesap_Olustur(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Listbox_ChangedSelection(object sender, SelectionChangedEventArgs e)
+        {
+
         }
     }
 }

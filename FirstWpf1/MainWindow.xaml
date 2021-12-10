@@ -5,13 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FirstWpf1"
         mc:Ignorable="d"
-        Title="MainWindow" Height="700" Width="1000" WindowStyle="None" Background="#D3D3D3">
+        Title="MainWindow" Height="700" Width="1000" WindowStyle="None" Background="#D3D3D3" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="70" />
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <Grid Grid.Row="0" Background="#5B5B5B">
+        <Grid Grid.Row="0" Background="#5B5B5B" MouseDown="PencereyiAl">
             <StackPanel HorizontalAlignment="Left" Margin="12,0,0,0" VerticalAlignment="Center" Orientation="Horizontal">
                 <!--<Image Source="" Width="30" />-->
                 <TextBlock FontSize="30" Margin="0,0,11,0">Icon</TextBlock>
@@ -23,9 +23,9 @@
                         <ImageBrush source=""/>
                     </Rectangle.Fill>
                 </Rectangle>-->
-                <TextBlock FontSize="30" VerticalAlignment="Center" TextAlignment="Center" Width="40" Margin="0,0,9,0" Foreground="White">—</TextBlock>
-                <TextBlock FontSize="30" VerticalAlignment="Center" TextAlignment="Center"  Margin="0,0,9,0"  Foreground="White">▭</TextBlock>
-                <TextBlock FontSize="40" Foreground="White" Margin="5,0,15,0" >X</TextBlock>
+                <TextBlock FontSize="30" VerticalAlignment="Center" TextAlignment="Center" Width="40" Margin="0,0,9,0" Foreground="White" MouseUp="PencereIndir">—</TextBlock>
+                <TextBlock FontSize="30" VerticalAlignment="Center" TextAlignment="Center" MouseUp="PencereKucult"  Margin="0,0,9,0"  Foreground="White">▭</TextBlock>
+                <TextBlock Name="btnClose" FontSize="40" Foreground="White" Margin="5,0,15,0" MouseUp="PencereKapat">X</TextBlock>
             </StackPanel>
         </Grid>
         <Grid Grid.Row="1">
@@ -33,7 +33,7 @@
                 <ColumnDefinition Width="510"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <ListBox Grid.Column="0" BorderBrush="#808080" BorderThickness="3"/>
+            <ListBox Grid.Column="0" FontFamily="Bell MT" BorderBrush="#808080" BorderThickness="3" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" SelectionChanged="Listbox_ChangedSelection"/>
             <Grid Grid.Column="1">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="150"/>
@@ -51,16 +51,16 @@
                         <RowDefinition Height="39*"/>
                         <RowDefinition Height="50*" />
                     </Grid.RowDefinitions>
-                    <Button Grid.Row="0" Grid.Column="0" Background="#BBBBBB" FontSize="15" BorderBrush="#808080" BorderThickness="3" Foreground="#474747" FontFamily="Roboto" Grid.ColumnSpan="2" Grid.RowSpan="2">Hesap Ekle</Button>
-                    <Button Grid.Row="0" Grid.Column="2" Background="#BBBBBB" FontSize="15" BorderBrush="#808080" BorderThickness="3" Foreground="#474747" FontFamily="Roboto" Grid.RowSpan="2">Hesap Bul</Button>
+                    <Button Click="MenuKullan" Grid.Row="0" Grid.Column="0" Background="#BBBBBB" FontSize="15" BorderBrush="#808080" BorderThickness="3" Foreground="#474747" FontFamily="Roboto" Grid.ColumnSpan="2" Grid.RowSpan="2">Hesap Ekle</Button>
+                    <Button Click="MenuKullan" Grid.Row="0" Grid.Column="2" Background="#BBBBBB" FontSize="15" BorderBrush="#808080" BorderThickness="3" Foreground="#474747" FontFamily="Roboto" Grid.RowSpan="2">Hesap Bul</Button>
                     <Button Grid.Row="0" Grid.Column="3" Background="#BBBBBB" FontSize="15" BorderBrush="#808080" BorderThickness="3" Foreground="#474747" FontFamily="Roboto" Grid.RowSpan="2">Ayarlar</Button>
 
                     <Button Grid.Row="2" Grid.Column="0" Background="#BBBBBB" FontSize="15" BorderBrush="#808080" BorderThickness="3" Foreground="#474747" FontFamily="Roboto" Grid.ColumnSpan="2">Kredi Kartı İşlemleri</Button>
                     <Button Grid.Row="2" Grid.Column="2" Background="#BBBBBB" FontSize="15" BorderBrush="#808080" BorderThickness="3" Foreground="#474747" FontFamily="Roboto">Banka İşlemleri</Button>
                     <Button Grid.Row="2" Grid.Column="3" Background="#BBBBBB" FontSize="15" BorderBrush="#808080" BorderThickness="3" Foreground="#474747" FontFamily="Roboto">Destek ve İletişim</Button>
                 </Grid>
-                <Grid Visibility="Hidden" x:Name="HesapEkle" Grid.Row="1">
-                    <TextBlock Text="Hesap numarası = {0}" FontSize="15" FontFamily="Bell MT" Margin="15,10,0,0"/>
+                <Grid Visibility="Visible" x:Name="HesapEkle" Grid.Row="1">
+                    <!--<TextBlock Text="Hesap numarası = {0}" FontSize="15" FontFamily="Bell MT" Margin="15,10,0,0"/>-->
                     <Grid Margin="10,0,10,0" VerticalAlignment="Center">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>
@@ -101,7 +101,7 @@
                         <TextBlock  VerticalAlignment="Center" FontFamily="Nirmala UI" FontSize="15" Foreground="#474747" Margin="4,15,0,0" Grid.Row="4" Grid.Column="2">İlçe:</TextBlock>
                         <TextBlock  VerticalAlignment="Center" FontFamily="Nirmala UI" FontSize="15" Foreground="#474747" Margin="4,15,0,0" Grid.Row="5" Grid.Column="2">Ev Adresi   :</TextBlock>
 
-                        <ComboBox BorderThickness="0"  Foreground="#474747" Text="Türü" IsEditable="True" Margin="0,15,0,0" Grid.Column="3" Grid.Row="0" FontFamily="Nirmala UI" FontSize="15" Padding="8,0,0,5"  VerticalContentAlignment="Bottom" VerticalAlignment="Center"/>
+                        <DatePicker BorderThickness="0"  Foreground="#474747" Text="Türü"  Margin="0,15,0,0" Grid.Column="3" Grid.Row="0" FontFamily="Nirmala UI" FontSize="15" Padding="8,0,0,5"  VerticalContentAlignment="Bottom" VerticalAlignment="Center"/>
                         <StackPanel Grid.Column="3" Grid.Row="1" Orientation="Horizontal" Margin="0,1,1,-10" VerticalAlignment="Center">
                             <RadioButton VerticalContentAlignment="Center" BorderThickness="0.5" BorderBrush="#C1C1C1" Content="Erkek" FontFamily="Bell MT" FontSize="15" />
                             <RadioButton VerticalContentAlignment="Center" BorderThickness="0.5" BorderBrush="#C1C1C1" Content="Kadın" FontFamily="Bell MT" FontSize="15" Margin="10,0,0,0" />
@@ -110,10 +110,12 @@
                         <TextBox   Margin="0,15,0,0"  Grid.Row="3" Grid.Column="3" MinWidth="150" HorizontalAlignment="Left" Foreground="#3C3C43" BorderThickness="0" FontFamily="Bell MT" Padding="4,4,0,3" VerticalContentAlignment="Bottom" VerticalAlignment="Center" ></TextBox>
                         <TextBox   Margin="0,15,0,0"  Grid.Row="4" Grid.Column="3" MinWidth="150" HorizontalAlignment="Left" Foreground="#3C3C43" BorderThickness="0" FontFamily="Bell MT" Padding="4,4,0,3" VerticalContentAlignment="Bottom" VerticalAlignment="Center" ></TextBox>
                         <TextBox   Margin="0,15,0,0" TextWrapping="Wrap" Grid.Row="5" Grid.RowSpan="3" Height="100" Grid.Column="3" MinWidth="150" HorizontalAlignment="Left" Foreground="#3C3C43" BorderThickness="0" FontFamily="Bell MT" Padding="4,4,0,3" VerticalContentAlignment="Bottom" VerticalAlignment="Center" ></TextBox>
+
                     </Grid>
-                    <Button VerticalAlignment="Bottom" Content="Kaydet" Background="#FF9CA0E8" Foreground="White" FontSize="21" BorderBrush="AliceBlue" Margin="0,0,42,31" Padding="16,4,16,4" HorizontalAlignment="Right" Width="226" />
+
+                    <Button VerticalAlignment="Bottom" Content="Kaydet" Background="#FF9CA0E8" Foreground="White" FontSize="21" BorderBrush="AliceBlue" Margin="0,0,10,31" Padding="16,4,16,4" HorizontalAlignment="Right" Width="480" Height="40" Click="Hesap_Olustur"/>
                 </Grid>
-                <Grid Visibility="Visible" x:Name="HesapBul" Grid.Row="1">
+                <Grid Visibility="Hidden" x:Name="HesapBul" Grid.Row="1">
                     <StackPanel VerticalAlignment="Top" Orientation="Horizontal" Margin="30,20,0,0">
                         <TextBlock Text="Hesap Numarası: " FontSize="21" FontFamily="Bell MT" Margin="30,20,0,0"/>
                         <TextBox Width="170" FontSize="23" Margin="30,20,0,0"/>
