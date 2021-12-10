@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace FirstWpf1
 {
-   public class Hesap
+    public class Hesap
     {
         public Hesap()
         {
             string HesapNo = "";
             Random rnd = new Random();
             for (int i = 0; i < 7; i++)
-                HesapNo += rnd.Next(0,9);
+                HesapNo += rnd.Next(0, 9);
             this.HesapNo = HesapNo;
         }
         public string HesapNo { get; set; }
@@ -24,8 +24,8 @@ namespace FirstWpf1
         public string Net { get; set; }
         public string Tel { get; set; }
         public string Mail { get; set; }
-        public DateTime DogumTarihi { get; set; }
-        public string Cinsiyet { get; set; }
+        public DateTime? DogumTarihi { get; set; }
+        public char Cinsiyet { get; set; }
         public string Ulke { get; set; }
         public string Il { get; set; }
         public string Ilce { get; set; }
